@@ -1,0 +1,7 @@
+# CLion specific files
+.cmake/
+.idea/
+*.iml
+
+# MacOS specific files
+.DS_Store
