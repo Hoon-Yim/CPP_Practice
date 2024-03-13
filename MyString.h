@@ -15,6 +15,7 @@ public:
     int Length() const;
 
     void Print() const;
+    void Println() const;
 
     ~MyString();
 };

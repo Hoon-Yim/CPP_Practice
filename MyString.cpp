@@ -48,3 +48,12 @@ void MyString::Print() const
         std::cout << mStringContent[i];
     }
 }
+
+void MyString::Println() const
+{
+    for (int i = 0; i < mStringLength; ++i)
+    {
+        std::cout << mStringContent[i];
+    }
+    std::cout << std::endl;
+}
