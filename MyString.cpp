@@ -147,7 +147,14 @@ MyString &MyString::Insert(const int loc, const MyString &str) {
     int totalLength = str.mStringLength + mStringLength;
     if (totalLength > mMemoryCapacity)
     {
-        mMemoryCapacity = totalLength;
+        if (mMemoryCapacity * 2 > totalLength)
+        {
+            mMemoryCapacity *= 2;
+        }
+        else
+        {
+            mMemoryCapacity = totalLength;
+        }
 
         char* prevStringContent = mStringContent;
         mStringContent = new char[mMemoryCapacity];
