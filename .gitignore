@@ -1,5 +1,5 @@
 # CLion specific files
-.cmake/
+.cmake*/
 .cmake-build-debug/
 .idea/
 *.iml
