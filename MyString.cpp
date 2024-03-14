@@ -2,7 +2,7 @@
 #include <cstring>
 #include "MyString.h"
 
-MyString::MyString(char c)
+MyString::MyString(const char c)
 {
     mStringContent = new char[1];
     mStringContent[0] = c;
@@ -47,6 +47,18 @@ int MyString::Length() const
 int MyString::Capacity() const
 {
     return mMemoryCapacity;
+}
+
+char MyString::At(const int i) const
+{
+    if (i >= mStringLength || i < 0)
+    {
+        return NULL;
+    }
+    else
+    {
+        return mStringContent[i];
+    }
 }
 
 void MyString::Print() const
@@ -108,20 +120,79 @@ MyString &MyString::Assign(const char *str)
     return *this;
 }
 
-void MyString::Reserve(int size)
+void MyString::Reserve(const int size)
 {
     if (size > mMemoryCapacity)
     {
-        char *prev_string_content = mStringContent;
+        char *prevStringContent = mStringContent;
 
         mStringContent = new char[size];
         mMemoryCapacity = size;
 
         for (int i = 0; i != mStringLength; ++i)
         {
-            mStringContent[i] = prev_string_content[i];
+            mStringContent[i] = prevStringContent[i];
         }
 
-        delete[] prev_string_content;
+        delete[] prevStringContent;
     }
+}
+
+MyString &MyString::Insert(const int loc, const MyString &str) {
+    if (loc < 0 || loc >= str.mStringLength)
+    {
+        return *this;
+    }
+
+    int totalLength = str.mStringLength + mStringLength;
+    if (totalLength > mMemoryCapacity)
+    {
+        mMemoryCapacity = totalLength;
+
+        char* prevStringContent = mStringContent;
+        mStringContent = new char[mMemoryCapacity];
+
+        int i = 0;
+        for (;i < loc; ++i)
+        {
+            mStringContent[i] = prevStringContent[i];
+        }
+
+        for (int j = 0; j < str.mStringLength; ++j)
+        {
+            mStringContent[i + j] = str.mStringContent[j];
+        }
+
+        for (; i < mStringLength; ++i)
+        {
+            mStringContent[str.mStringLength + i] = prevStringContent[i];
+        }
+
+        delete[] prevStringContent;
+    }
+    else
+    {
+        for (int i  = mStringLength - 1; i >= loc; --i)
+        {
+            mStringContent[str.mStringLength + i] = mStringContent[i];
+        }
+
+        for (int i = 0 ; i < str.mStringLength; ++i)
+        {
+            mStringContent[i + loc] = str.mStringContent[i];
+        }
+    }
+
+    mStringLength = totalLength;
+    return *this;
+}
+
+MyString &MyString::Insert(const int loc, const char *str) {
+    MyString temp(str);
+    return Insert(loc, temp);
+}
+
+MyString &MyString::Insert(const int loc, const char c) {
+    MyString temp(c);
+    return Insert(loc, temp);
 }
