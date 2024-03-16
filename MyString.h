@@ -9,6 +9,7 @@ private:
     int mMemoryCapacity;
 
 public:
+    explicit MyString(const int capacity);
     MyString(const char c);
     MyString(const char *str);
     MyString(const MyString &str);

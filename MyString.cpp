@@ -2,6 +2,13 @@
 #include <cstring>
 #include "MyString.h"
 
+MyString::MyString(const int capacity)
+{
+    mStringContent = new char[capacity];
+    mStringLength = 0;
+    mMemoryCapacity = capacity;
+}
+
 MyString::MyString(const char c)
 {
     mStringContent = new char[1];
