@@ -20,6 +20,7 @@ public:
     MyString& Insert(const int loc, const char *str);
     MyString& Insert(const int loc, const char c);
     void Reserve(const int size);
+    int Compare(const MyString& str);
 
     int Length() const;
     int Capacity() const;
@@ -27,6 +28,8 @@ public:
 
     void Print() const;
     void Println() const;
+
+    bool operator==(MyString& str);
 
     ~MyString();
 };

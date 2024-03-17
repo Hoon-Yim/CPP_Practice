@@ -145,7 +145,8 @@ void MyString::Reserve(const int size)
     }
 }
 
-MyString &MyString::Insert(const int loc, const MyString &str) {
+MyString &MyString::Insert(const int loc, const MyString &str)
+{
     if (loc < 0 || loc >= str.mStringLength)
     {
         return *this;
@@ -201,12 +202,51 @@ MyString &MyString::Insert(const int loc, const MyString &str) {
     return *this;
 }
 
-MyString &MyString::Insert(const int loc, const char *str) {
+MyString &MyString::Insert(const int loc, const char *str)
+{
     MyString temp(str);
     return Insert(loc, temp);
 }
 
-MyString &MyString::Insert(const int loc, const char c) {
+MyString &MyString::Insert(const int loc, const char c)
+{
     MyString temp(c);
     return Insert(loc, temp);
+}
+
+int MyString::Compare(const MyString &str)
+{
+    // it performs (*this) - (str) and returns -1, 0, or 1.
+    // 1 means (*this) comes later in dictionary, 0 means they are the same
+    // -1 means (*this) comes first in dictionary
+
+    for (int i = 0; i < std::min(mStringLength, str.mStringLength); ++i)
+    {
+        if (mStringContent[i] > str.mStringContent[i])
+        {
+            return 1;
+        }
+        else if (mStringContent[i] < str.mStringContent[i])
+        {
+            return -1;
+        }
+    }
+
+    if (mStringLength == str.mStringLength)
+    {
+        return 0;
+    }
+    else if (mStringLength > str.mStringLength)
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+}
+
+bool MyString::operator==(MyString &str)
+{
+    return !Compare(str);
 }

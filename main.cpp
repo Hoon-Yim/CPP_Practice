@@ -1,17 +1,20 @@
 #include <iostream>
 
-#include "MyString.h"
+#include "MyString/MyString.h"
 
 int main()
 {
-    MyString str1("very long string");
-    MyString str2("<some string inserted between>");
-    str1.Reserve(30);
+    MyString str1("a word");
+    MyString str2("sentence");
+    MyString str3("sentence");
 
-    std::cout << "Capacity : " << str1.Capacity() << std::endl;
-    std::cout << "String length : " << str1.Length() << std::endl;
-    str1.Println();
+    if (str1 == str2)
+        std::cout << "str1 와 str2 같다." << std::endl;
+    else
+        std::cout << "st1 와 str2 는 다르다." << std::endl;
 
-    str1.Insert(5, str2);
-    str1.Println();
+    if (str2 == str3)
+        std::cout << "str2 와 str3 는 같다." << std::endl;
+    else
+        std::cout << "st2 와 str3 는 다르다" << std::endl;
 }
