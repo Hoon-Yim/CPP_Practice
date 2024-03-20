@@ -1,20 +1,14 @@
 #include <iostream>
 
 #include "MyString/MyString.h"
+#include "Complex/Complex.h"
 
 int main()
 {
-    MyString str1("a word");
-    MyString str2("sentence");
-    MyString str3("sentence");
+    Complex a(1.0, 2.0);
+    Complex b(3.0, -2.0);
 
-    if (str1 == str2)
-        std::cout << "str1 와 str2 같다." << std::endl;
-    else
-        std::cout << "st1 와 str2 는 다르다." << std::endl;
+    Complex c = a * b;
 
-    if (str2 == str3)
-        std::cout << "str2 와 str3 는 같다." << std::endl;
-    else
-        std::cout << "st2 와 str3 는 다르다" << std::endl;
+    c.Println();
 }
