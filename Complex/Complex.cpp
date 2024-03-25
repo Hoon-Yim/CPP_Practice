@@ -36,6 +36,30 @@ Complex& Complex::operator=(const Complex &c)
     return *this;
 }
 
+Complex& Complex::operator+=(const Complex &c)
+{
+    (*this) = (*this) + c;
+    return *this;
+}
+
+Complex& Complex::operator-=(const Complex &c)
+{
+    (*this) = (*this) - c;
+    return *this;
+}
+
+Complex& Complex::operator*=(const Complex &c)
+{
+    (*this) = (*this) * c;
+    return *this;
+}
+
+Complex& Complex::operator/=(const Complex &c)
+{
+    (*this) = (*this) / c;
+    return *this;
+}
+
 void Complex::Println() const
 {
     std::cout << "( " << mReal << " , " << mImaginary << " ) " << std::endl;
